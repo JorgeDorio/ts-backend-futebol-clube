@@ -13,7 +13,7 @@ class userController {
       if (!login) {
         return res.status(401).json({ message: 'Incorrect email or password' });
       }
-      return res.status(200).json(login);
+      return res.status(200).json({ token: login.token });
     } catch (e) {
       console.log(e);
       next(e);

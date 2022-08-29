@@ -1,8 +1,9 @@
 import * as bcryptjs from 'bcryptjs';
 import UserModel from '../database/models/User.model';
 import getToken from '../auth/getToken';
+import validateToken from '../auth/validateToken'
 
-class UserService {
+export class UserService {
   constructor(private userModel = UserModel) { }
 
   login = async (email: string, pwd: string) => {
@@ -12,8 +13,6 @@ class UserService {
       if (!userLogin || !bcryptjs.compare(userLogin.password, pwd)) {
         return false;
       }
-
-      console.log(bcryptjs.compare(userLogin.password, pwd))
 
       const { password, id, role } = userLogin;
       const token = getToken(userLogin);
@@ -25,10 +24,19 @@ class UserService {
         },
         token,
       };
-    } catch (e) {
-      console.log(e);
+    } catch (_e) {
+      console.log('Erro em User.service');
     }
   };
 }
 
-export default UserService;
+export class UserValidateService {
+  public validate = (authorization: string) => {
+    try {
+      const validation = validateToken(authorization)
+      return { role: validation?.role }
+    } catch (_e) {
+      console.log('Errom em User.service => UserValidateService')
+    }
+  }
+}

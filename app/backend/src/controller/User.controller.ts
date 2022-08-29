@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import UserService from '../service/User.service';
+import { UserService, UserValidateService } from '../service/User.service';
 
-class userController {
+export class UserController {
   constructor(private userService = new UserService()) { }
 
   public login = async (req: Request, res: Response, next: NextFunction) => {
@@ -21,4 +21,16 @@ class userController {
   };
 }
 
-export default userController;
+export class UserValidate {
+  constructor(private userValidateService = new UserValidateService()) { }
+  public validate = (req: Request, res: Response) => {
+    try {
+      const { authorization } = req.headers;
+      const validation = this.userValidateService.validate(authorization || '')
+      return res.status(200).json(validation)
+    } catch (_e) {
+      console.log("Erro em User.controller => userValidate")
+    }
+  }
+}
+

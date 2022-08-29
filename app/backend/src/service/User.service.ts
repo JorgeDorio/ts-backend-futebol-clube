@@ -12,6 +12,9 @@ class UserService {
       if (!userLogin || !bcryptjs.compare(userLogin.password, pwd)) {
         return false;
       }
+
+      console.log(bcryptjs.compare(userLogin.password, pwd))
+
       const { password, id, role } = userLogin;
       const token = getToken(userLogin);
       return {

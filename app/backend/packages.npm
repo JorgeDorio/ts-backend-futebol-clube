@@ -1,4 +1,5 @@
 joi
 @types/joi
 http-status-codes
+jwt-decode
 @types/http-status-codes 

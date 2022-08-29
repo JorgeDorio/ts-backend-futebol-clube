@@ -11,6 +11,16 @@ class TeamConstroller {
       console.log('Erro em Team.controller');
     }
   };
+
+  public getById = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const team = await this.teamService.getById(Number(id));
+      return res.status(200).json(team);
+    } catch (_e) {
+      console.log('Erro em Team.controller => getById');
+    }
+  };
 }
 
 export default TeamConstroller;

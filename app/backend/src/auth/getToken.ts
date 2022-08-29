@@ -3,7 +3,6 @@ import { IUser } from '../interfaces/IUser';
 import 'dotenv/config';
 
 const getToken = (user: IUser): string => {
-
   const { password, id, role } = user;
   // const { password, ...teste } = user;
 

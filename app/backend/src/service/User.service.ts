@@ -1,9 +1,8 @@
 import * as bcryptjs from 'bcryptjs';
 import UserModel from '../database/models/User.model';
 import getToken from '../auth/getToken';
-import validateToken from '../auth/validateToken'
 
-export class UserService {
+class UserService {
   constructor(private userModel = UserModel) { }
 
   login = async (email: string, pwd: string) => {
@@ -30,13 +29,4 @@ export class UserService {
   };
 }
 
-export class UserValidateService {
-  public validate = (authorization: string) => {
-    try {
-      const validation = validateToken(authorization)
-      return { role: validation?.role }
-    } catch (_e) {
-      console.log('Errom em User.service => UserValidateService')
-    }
-  }
-}
+export default UserService;

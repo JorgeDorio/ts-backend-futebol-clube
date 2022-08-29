@@ -1,14 +1,14 @@
-import Teams from '../database/models/Teams.model'
+import Teams from '../database/models/Teams.model';
 
 class TeamService {
   public getAll = async () => {
     try {
-      const teams = Teams.findAll()
-      return teams
+      const teams = Teams.findAll();
+      return await teams;
     } catch (_e) {
-      console.log("Erro em Team.service")
+      console.log('Erro em Team.service');
     }
-  }
+  };
 }
 
-export default TeamService
+export default TeamService;

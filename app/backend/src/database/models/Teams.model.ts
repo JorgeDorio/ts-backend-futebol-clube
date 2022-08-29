@@ -1,5 +1,4 @@
-import { NUMBER } from 'sequelize';
-import { STRING, Model } from 'sequelize';
+import { NUMBER, STRING, Model } from 'sequelize';
 import db from '.';
 
 class team extends Model {

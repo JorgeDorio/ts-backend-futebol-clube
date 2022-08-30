@@ -38,6 +38,10 @@ class MatchesService {
       return { status: 401, data: { message: 'Unauthorized' } };
     }
   };
+
+  public finishMatch = async (id: string) => {
+    await Matches.update({ inProgress: 0 }, { where: { id } });
+  };
 }
 
 export default MatchesService;

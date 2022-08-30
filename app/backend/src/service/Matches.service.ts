@@ -21,7 +21,7 @@ class MatchesService {
     const matches = await Matches.findAll({
       include,
       where: {
-        inProgress: 'true',
+        inProgress: '1',
       },
     });
     return matches;

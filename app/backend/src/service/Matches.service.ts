@@ -44,7 +44,7 @@ class MatchesService {
       }
       return { status: 201, data: await Matches.create(test) };
     } catch (_e) {
-      return { status: 401, data: { message: 'Unauthorized' } };
+      return { status: 401, data: { "message": "Token must be a valid token" } };
     }
   };
 

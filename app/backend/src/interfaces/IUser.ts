@@ -3,5 +3,5 @@ export interface IUser {
   password: string,
   id?: number,
   username?: string,
-  role?: string
+  role?: string,
 }

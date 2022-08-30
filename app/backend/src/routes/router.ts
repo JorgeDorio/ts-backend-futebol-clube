@@ -12,6 +12,7 @@ const tokenController = new TokenController();
 const teamConstroller = new TeamConstroller();
 const matchesController = new MatchesController();
 
+router.post('/matches', matchesController.addMatch);
 router.get('/matches', matchesController.getAll);
 router.get('/teams/:id', teamConstroller.getById);
 router.get('/teams', teamConstroller.getAll);

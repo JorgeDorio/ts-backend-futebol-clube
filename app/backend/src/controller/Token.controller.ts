@@ -4,13 +4,9 @@ import TokenService from '../service/Token.service';
 class tokenController {
   constructor(private tokenService = new TokenService()) { }
   public validate = (req: Request, res: Response) => {
-    try {
-      const { authorization } = req.headers;
-      const validation = this.tokenService.validate(authorization || '');
-      return res.status(200).json(validation);
-    } catch (_e) {
-      console.log('Erro em User.controller => userValidate');
-    }
+    const { authorization } = req.headers;
+    const validation = this.tokenService.validate(authorization || '');
+    return res.status(200).json(validation);
   };
 }
 

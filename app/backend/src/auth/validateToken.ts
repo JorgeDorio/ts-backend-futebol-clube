@@ -1,13 +1,9 @@
-import jwt from 'jwt-decode';
+import * as jwt from 'jsonwebtoken';
 import { IUser } from '../interfaces/IUser';
 
 const validateToken = (token: string) => {
-  try {
-    const decoded = jwt(token);
-    return decoded as IUser;
-  } catch (_e) {
-    console.log('Erro em auth/validadeToken');
-  }
+  const decoded = jwt.verify(token, 'jwt_secret');
+  return decoded as IUser;
 };
 
 export default validateToken;

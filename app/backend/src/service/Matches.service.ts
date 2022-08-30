@@ -32,8 +32,16 @@ class MatchesService {
       validateToken(token);
       const test = data;
       test.inProgress = 1;
-      const insert = await Matches.create(test);
-      return { status: 201, data: insert };
+      if (test.homeTeam !== test.awayTeam) {
+        const insert = await Matches.create(test);
+        return { status: 201, data: insert };
+      }
+      return {
+        status: 401,
+        data: {
+          message: 'It is not possible to create a match with two equal teams',
+        },
+      };
     } catch (_e) {
       return { status: 401, data: { message: 'Unauthorized' } };
     }

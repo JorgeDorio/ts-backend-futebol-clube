@@ -5,11 +5,15 @@ class MatchesController {
   constructor(private matchesService = new MatchesService()) { }
   public getAll = async (req: Request, res: Response) => {
     const { inProgress } = req.query;
-    if (!inProgress) {
-      const matches = await this.matchesService.getAll();
+    let matches;
+    if (inProgress === undefined) {
+      matches = await this.matchesService.getAll();
       return res.status(200).json(matches);
+    } else if (inProgress === 'true') {
+      matches = await this.matchesService.getInProgress(1);
+    } else {
+      matches = await this.matchesService.getInProgress(0)
     }
-    const matches = await this.matchesService.getInProgress();
     return res.status(200).json(matches);
   };
 

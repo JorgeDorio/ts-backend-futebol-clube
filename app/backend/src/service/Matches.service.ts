@@ -40,7 +40,7 @@ class MatchesService {
           data: { message: 'It is not possible to create a match with two equal teams' },
         };
       } if (homeTeam === null || awayTeam === null) {
-        return { status: 401, data: { message: 'There is no team with such id!' } };
+        return { status: 404, data: { message: 'There is no team with such id!' } };
       }
       return { status: 201, data: await Matches.create(test) };
     } catch (_e) {

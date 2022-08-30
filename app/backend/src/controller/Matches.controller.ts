@@ -9,10 +9,10 @@ class MatchesController {
     if (inProgress === undefined) {
       matches = await this.matchesService.getAll();
       return res.status(200).json(matches);
-    } else if (inProgress === 'true') {
+    } if (inProgress === 'true') {
       matches = await this.matchesService.getInProgress(1);
     } else {
-      matches = await this.matchesService.getInProgress(0)
+      matches = await this.matchesService.getInProgress(0);
     }
     return res.status(200).json(matches);
   };
@@ -28,6 +28,12 @@ class MatchesController {
     const { id } = req.params;
     await this.matchesService.finishMatch(id);
     return res.status(200).json({ message: 'Finished' });
+  };
+
+  public changeMatch = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    await this.matchesService.changeMatch(req.body, id);
+    return res.status(200).json(req.body);
   };
 }
 

@@ -13,6 +13,7 @@ const teamConstroller = new TeamConstroller();
 const matchesController = new MatchesController();
 
 router.patch('/matches/:id/finish', matchesController.finishMatch);
+router.patch('/matches/:id', matchesController.changeMatch);
 router.post('/matches', matchesController.addMatch);
 router.get('/matches', matchesController.getAll);
 router.get('/teams/:id', teamConstroller.getById);

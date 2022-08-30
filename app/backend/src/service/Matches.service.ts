@@ -44,12 +44,17 @@ class MatchesService {
       }
       return { status: 201, data: await Matches.create(test) };
     } catch (_e) {
-      return { status: 401, data: { "message": "Token must be a valid token" } };
+      return { status: 401, data: { message: 'Token must be a valid token' } };
     }
   };
 
   public finishMatch = async (id: string) => {
     await Matches.update({ inProgress: 0 }, { where: { id } });
+  };
+
+  public changeMatch = async (data: IMatch, id: string) => {
+    console.log(data);
+    await Matches.update(data, { where: { id } });
   };
 }
 
